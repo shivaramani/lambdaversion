@@ -1,5 +1,7 @@
 ### Lambda Version Alias
 
+This example provides house alias routing can be used in API Gateway and in Kinesis Streams (lambda event mapping to alias)
+
 High level Steps
 
 - The solution has "src" and "templates". src has the java sample lambda. templates have the .tf files. 
@@ -33,6 +35,14 @@ $ cd ..
 $ chmod +x exec.sh
 $ ./exec.sh
 
+# Sample commands to push to Kinesis stream
+
+aws kinesis put-record --stream-name ingest-redblack-kinesis --data "{\"id\": \"value1\"}" --partition-key 'id'
+aws kinesis put-record --stream-name ingest-redblack-kinesis --data "{\"id\": \"value2\"}" --partition-key 'id'
+aws kinesis put-record --stream-name ingest-redblack-kinesis --data "{\"id\": \"value3\"}" --partition-key 'id'
+aws kinesis put-record --stream-name ingest-redblack-kinesis --data "{\"id\": \"value4\"}" --partition-key 'id'
+aws kinesis put-record --stream-name ingest-redblack-kinesis --data "{\"id\": \"value5\"}" --partition-key 'id'
+aws kinesis put-record --stream-name ingest-redblack-kinesis --data "{\"id\": \"value6\"}" --partition-key 'id'
 
 
 ### References

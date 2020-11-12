@@ -17,6 +17,13 @@ resource "aws_lambda_function" "lambda_version_checker" {
   }
 }
 
+resource "aws_lambda_event_source_mapping" "lambda_version_kinesis_mapping" {
+  event_source_arn  = "${aws_kinesis_stream.lambda_version_checker_stream.arn}"
+  #function_name     = "${aws_lambda_function.lambda_version_checker.arn}"
+  function_name     = "${aws_lambda_alias.lambda_function_alias_active.arn}"
+  starting_position = "LATEST"
+}
+
 resource "aws_lambda_alias" "lambda_function_alias_active" {
   name             = "active"
   function_name    = "${var.app_prefix}-lambda"

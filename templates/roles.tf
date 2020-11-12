@@ -19,6 +19,25 @@ resource "aws_iam_role_policy_attachment" "version_checkerlambda_policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
+resource "aws_iam_role_policy" "stream_checkerlambda_inline_policy" {
+  name   = "${var.app_prefix}-stream_checkerlambda_inline_policy"
+  role   = "${aws_iam_role.version_checker_lambda_role.id}"
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "kinesis:*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
 
 resource "aws_iam_role" "version_checker_invocation_role" {
   name = "${var.app_prefix}-api-gateway-auth-invocation"
