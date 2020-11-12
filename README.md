@@ -18,6 +18,9 @@ High level Steps
 	 - At this point the the cli sets current version as red and new code being deployed as black
 	 - cli sets the routing pointing to black and additional routing config weightage for the fallback/red
 
+
+![Alt text](lambda%20alias%20routing.png?raw=true "Title")
+
 ##### Commands
 
 $ cd templates
